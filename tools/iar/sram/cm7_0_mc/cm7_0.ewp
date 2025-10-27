@@ -230,6 +230,7 @@
                     <state>CY_CORE_CM7_0</state>
                     <state>__ICACHE_PRESENT=1</state>
                     <state>__DCACHE_PRESENT=1</state>
+                    <state>ESTEC_BOARD</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>

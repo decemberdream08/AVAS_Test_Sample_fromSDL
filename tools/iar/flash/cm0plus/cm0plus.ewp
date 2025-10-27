@@ -1308,10 +1308,11 @@
                 <option>
                     <name>CCDefines</name>
                     <state>tviibh4m</state>
-                    <state>CYT3BB7CEE</state>
+                    <state>CYT3BB5CEE</state>
                     <state>CY_USE_PSVP=0</state>
                     <state>CY_MCU_rev_b</state>
                     <state>CPU_BOARD_REVB</state>
+                    <state>ESTEC_BOARD</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>

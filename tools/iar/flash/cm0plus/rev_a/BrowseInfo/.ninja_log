@@ -1,0 +1,9 @@
+# ninja log v5
+178	628	7787582680000000	D:/02_ESTec/01_PRJ/07_HKMC/02_AVAS_Car_Test_Sample/03_Source/02_SDL/00_Git_Master_Code/tviibh4m/tools/iar/flash/cm0plus/rev_a/BrowseInfo/src/drivers/crypto/cy_crypto_config.xcl	3833c8a2f022b8d6
+122	731	7787582680000000	D:/02_ESTec/01_PRJ/07_HKMC/02_AVAS_Car_Test_Sample/03_Source/02_SDL/00_Git_Master_Code/tviibh4m/tools/iar/flash/cm0plus/rev_a/BrowseInfo/src/drivers/dma/cy_mdma.xcl	f30c3e6312fa2f98
+14	831	7787582680000000	D:/02_ESTec/01_PRJ/07_HKMC/02_AVAS_Car_Test_Sample/03_Source/02_SDL/00_Git_Master_Code/tviibh4m/tools/iar/flash/cm0plus/rev_a/BrowseInfo/src/drivers/cpu/cy_cpu.xcl	e2e5b40d6bf6e3ff
+73	922	7787582680000000	D:/02_ESTec/01_PRJ/07_HKMC/02_AVAS_Car_Test_Sample/03_Source/02_SDL/00_Git_Master_Code/tviibh4m/tools/iar/flash/cm0plus/rev_a/BrowseInfo/src/drivers/canfd/cy_canfd.xcl	9dacb989b38756ab
+651	1552	7787582690000000	D:/02_ESTec/01_PRJ/07_HKMC/02_AVAS_Car_Test_Sample/03_Source/02_SDL/00_Git_Master_Code/tviibh4m/tools/iar/flash/cm0plus/rev_a/BrowseInfo/src/drivers/ethernet/cy_ethif.xcl	ad4e2d31dd414770
+855	1683	7787582690000000	D:/02_ESTec/01_PRJ/07_HKMC/02_AVAS_Car_Test_Sample/03_Source/02_SDL/00_Git_Master_Code/tviibh4m/tools/iar/flash/cm0plus/rev_a/BrowseInfo/src/drivers/flash/cy_flash.xcl	1753879ff6f63533
+756	1797	7787582690000000	D:/02_ESTec/01_PRJ/07_HKMC/02_AVAS_Car_Test_Sample/03_Source/02_SDL/00_Git_Master_Code/tviibh4m/tools/iar/flash/cm0plus/rev_a/BrowseInfo/src/drivers/dma/cy_pdma.xcl	4efb8d695a27c664
+947	1921	7787582690000000	D:/02_ESTec/01_PRJ/07_HKMC/02_AVAS_Car_Test_Sample/03_Source/02_SDL/00_Git_Master_Code/tviibh4m/tools/iar/flash/cm0plus/rev_a/BrowseInfo/src/drivers/ethernet/edd.xcl	1fd31f6e789620fd

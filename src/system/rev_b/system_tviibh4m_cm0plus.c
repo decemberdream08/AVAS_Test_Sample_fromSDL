@@ -184,12 +184,20 @@ void SystemInit (void)
 
     /***    ECO setting and enabling        ***/
     // These values need to be confirmed
+#ifdef ESTEC_BOARD //KMS250905_1 : ECO setting
+    SRSS->unCLK_ECO_CONFIG2.stcField.u3WDTRIM = 7u;
+    SRSS->unCLK_ECO_CONFIG2.stcField.u4ATRIM  = 14u;
+    SRSS->unCLK_ECO_CONFIG2.stcField.u2FTRIM  = 3u;
+    SRSS->unCLK_ECO_CONFIG2.stcField.u2RTRIM  = 3u;
+    SRSS->unCLK_ECO_CONFIG2.stcField.u3GTRIM  = 1u;
+    SRSS->unCLK_ECO_CONFIG.stcField.u1AGC_EN  = 0u; 
+#else    
     SRSS->unCLK_ECO_CONFIG2.stcField.u3WDTRIM = 4u;
     SRSS->unCLK_ECO_CONFIG2.stcField.u4ATRIM  = 12u;
     SRSS->unCLK_ECO_CONFIG2.stcField.u2FTRIM  = 3u;
     SRSS->unCLK_ECO_CONFIG2.stcField.u2RTRIM  = 3u;
     SRSS->unCLK_ECO_CONFIG2.stcField.u3GTRIM  = 1u;
-
+#endif
 
     SRSS->unCLK_ECO_CONFIG.stcField.u1ECO_EN = 1ul;
     while(SRSS->unCLK_ECO_STATUS.stcField.u1ECO_OK == 0ul);

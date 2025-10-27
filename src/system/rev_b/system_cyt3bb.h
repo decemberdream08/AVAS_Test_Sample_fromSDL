@@ -78,7 +78,11 @@ extern "C" {
 #define CY_SYS_VCCD_PMIC                        (1u)
 #define CY_SYS_VCCD_PASS_TR                     (2u)
 
+#ifdef ESTEC_BOARD
+#define CY_SYS_VCCD_SOURCE                      CY_SYS_VCCD_PASS_TR //KMS250909 : ESTec Board doesn't use PMIC.
+#else
 #define CY_SYS_VCCD_SOURCE                      CY_SYS_VCCD_PMIC
+#endif
 
 /*******************************************************************************
 * PLL400#0 leading to CM7 cores output frequency selection
@@ -157,7 +161,9 @@ extern "C" {
 #define CY_SYSTEM_USE_CLOCK                     CY_SYSTEM_USE_ECO
 
 // Definition whether WCO enabled or not
-#define CY_SYSTEM_WCO_ENABLE                      // This would be ignored if CY_SYSTEM_USE_CLOCK == CY_SYSTEM_USE_LPECO
+#ifndef ESTEC_BOARD
+#define CY_SYSTEM_WCO_ENABLE                      //KMS250905 // This would be ignored if CY_SYSTEM_USE_CLOCK == CY_SYSTEM_USE_LPECO //KMS250905_1
+#endif
 
 // Definition of this macro disables the WDT (Enabled in SROM)
 #define CY_SYSTEM_WDT_DISABLE
