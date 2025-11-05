@@ -28,3 +28,4 @@
 
 ## 2025-11-05
   - Separated AMP code and CAN code. It's working in cm0plus case.
+  - Added mute function.
