@@ -3628,6 +3628,15 @@
             </group>
         </group>
         <group>
+            <name>peripheral</name>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\tcan1145d_can.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\tda803d_amp.c</name>
+            </file>
+        </group>
+        <group>
             <name>startup</name>
             <file>
                 <name>$PROJ_DIR$\..\..\..\..\..\common\src\startup\startup.c</name>

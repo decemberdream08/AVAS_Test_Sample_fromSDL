@@ -1444,6 +1444,7 @@
                     <state>$PROJ_DIR$\..\..\..\..\src\interrupts\rev_b</state>
                     <state>$PROJ_DIR$\..\..\..\..\src\drivers</state>
                     <state>$PROJ_DIR$\..\..\..\..\src\system\rev_b</state>
+                    <state>$PROJ_DIR$\..\..\..\..\src\peripheral</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -1763,7 +1764,7 @@
             <data>
                 <extensions></extensions>
                 <cmdline></cmdline>
-                <hasPrio>0</hasPrio>
+                <hasPrio>112</hasPrio>
                 <buildSequence>inputOutputBased</buildSequence>
             </data>
         </settings>
@@ -2965,6 +2966,15 @@
                     <name>$PROJ_DIR$\..\..\..\..\..\common\src\mw\sw_timer\cy_sw_tmr.h</name>
                 </file>
             </group>
+        </group>
+        <group>
+            <name>peripheral</name>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\tcan1145d_can.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\tda803d_amp.c</name>
+            </file>
         </group>
         <group>
             <name>startup</name>

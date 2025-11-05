@@ -23,5 +23,8 @@
 ## 2025-09-25
   - Added EVK_TEST define. //KMS250925_1
 
-## 2025-11-05
+## 2025-11-04
   - Implemented I2C and GPIO features to contorl FDA806D
+
+## 2025-11-05
+  - Separated AMP code and CAN code. It's working in cm0plus case.
