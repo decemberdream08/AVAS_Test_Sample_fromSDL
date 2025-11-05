@@ -22,3 +22,6 @@
 
 ## 2025-09-25
   - Added EVK_TEST define. //KMS250925_1
+
+## 2025-11-05
+  - Implemented I2C and GPIO features to contorl FDA806D

@@ -2491,6 +2491,8 @@ typedef enum
 #define CPUSS_CM7_0_ITCM_SIZE           16u
 /* CM7_0 Data TCM (DTCM) size in KB */
 #define CPUSS_CM7_0_DTCM_SIZE           16u
+
+#ifndef ESTEC_BOARD //KMS250904_2 : Need to delete this one because we don't use M7_1
 /* CM7_1 CPU present or not ('0': no, '1': yes) */
 #define CPUSS_CM7_1_PRESENT             1u
 /* System interrupt functionality present or not ('0': no; '1': yes) for CM7_1.
@@ -2509,6 +2511,8 @@ typedef enum
 #define CPUSS_CM7_1_ITCM_SIZE           16u
 /* CM7_1 Data TCM (DTCM) size in KB */
 #define CPUSS_CM7_1_DTCM_SIZE           16u
+#endif
+
 /* Debug level. Legal range [0,3] */
 #define CPUSS_DEBUG_LVL                 3u
 /* Trace level. Legal range [0,2] Note: CM4 HTM is not supported. Hence vaule 3

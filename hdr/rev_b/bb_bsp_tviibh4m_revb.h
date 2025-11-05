@@ -1337,9 +1337,39 @@ extern "C" {
 /******************************************************************************/
 
 /******************************************************************************/
-/*                      USER LED                                              */
+/*                      USER PORT                                              */
 /******************************************************************************/
+#ifdef EVK_TEST //KMS250925_1 : Added define
+/* CAN1 Pin Mux */ //KMS250901_1 : Added CAN PORT
+#define CY_CANFD1_TYPE                          CY_CANFD1_1_TYPE
+#define CY_CANFD1_RX_PORT                       GPIO_PRT17
+#define CY_CANFD1_RX_PIN                        1
+#define CY_CANFD1_RX_MUX                        P17_1_CANFD1_TTCAN_RX1
+#define CY_CANFD1_TX_PORT                       GPIO_PRT17
+#define CY_CANFD1_TX_PIN                        0
+#define CY_CANFD1_TX_MUX                        P17_0_CANFD1_TTCAN_TX1
+#define CY_CANFD1_PCLK                          PCLK_CANFD1_CLOCK_CAN1
+#define CY_CANFD1_IRQN                          canfd_1_interrupts0_1_IRQn
+  
 
+/* SPI Mux (BB_SPI1) */
+#define CY_SPI_SCB_TYPE                         SCB1
+#define CY_SPI_SCB_MISO_PORT                    GPIO_PRT18
+#define CY_SPI_SCB_MISO_PIN                     0
+#define CY_SPI_SCB_MISO_MUX                     P18_0_SCB1_SPI_MISO 
+#define CY_SPI_SCB_MOSI_PORT                    GPIO_PRT18
+#define CY_SPI_SCB_MOSI_PIN                     1
+#define CY_SPI_SCB_MOSI_MUX                     P18_1_SCB1_SPI_MOSI
+#define CY_SPI_SCB_CLK_PORT                     GPIO_PRT18
+#define CY_SPI_SCB_CLK_PIN                      2
+#define CY_SPI_SCB_CLK_MUX                      P18_2_SCB1_SPI_CLK
+#define CY_SPI_SCB_SEL0_PORT                    GPIO_PRT18
+#define CY_SPI_SCB_SEL0_PIN                     3
+#define CY_SPI_SCB_SEL0_MUX                     P18_3_SCB1_SPI_SELECT0
+#define CY_SPI_SCB_PCLK                         PCLK_SCB1_CLOCK
+#define CY_SPI_SCB_IRQN                         scb_1_interrupt_IRQn
+
+#else
 #define CY_CB_USER_LED1_PORT                    GPIO_PRT3 //Pin18
 #define CY_CB_USER_LED1_PIN                     2
 #define CY_CB_USER_LED1_PIN_MUX                 P3_2_GPIO
@@ -1998,6 +2028,7 @@ extern "C" {
 #define CY_HF3_CLK_OUT_PIN                         (7ul)
 #define CY_HF3_CLK_OUT_PIN_MUX                     P23_7_SRSS_EXT_CLK
 
+#endif
 /******************************************************************************/
 /******************************************************************************/
 
@@ -2023,9 +2054,65 @@ extern "C" {
 
 /******************************************************************************/
 /******************************************************************************/
+#elif (CY_USE_PSVP == 0) && ( defined(CYT3BB8CES) || defined(CYT3BB8CEE) || defined(CYT3BB7CEE) || defined(CYT3BB7CES))
 
-#elif (CY_USE_PSVP == 0) && ( defined(CYT3BB7CEE) || defined(CYT3BB7CES) )
+/* CAN1 Pin Mux */ //KMS250901_1 : Added CAN PORT
+#define CY_CANFD1_TYPE                          CY_CANFD1_1_TYPE
+#define CY_CANFD1_RX_PORT                       GPIO_PRT17
+#define CY_CANFD1_RX_PIN                        1
+#define CY_CANFD1_RX_MUX                        P17_1_CANFD1_TTCAN_RX1
+#define CY_CANFD1_TX_PORT                       GPIO_PRT17
+#define CY_CANFD1_TX_PIN                        0
+#define CY_CANFD1_TX_MUX                        P17_0_CANFD1_TTCAN_TX1
+#define CY_CANFD1_PCLK                          PCLK_CANFD1_CLOCK_CAN1
+#define CY_CANFD1_IRQN                          canfd_1_interrupts1_1_IRQn //canfd_1_interrupts0_1_IRQn
 
+/* SPI Mux (BB_SPI1) */
+#define CY_SPI_SCB_TYPE                         SCB1
+#define CY_SPI_SCB_MISO_PORT                    GPIO_PRT18
+#define CY_SPI_SCB_MISO_PIN                     0
+#define CY_SPI_SCB_MISO_MUX                     P18_0_SCB1_SPI_MISO 
+#define CY_SPI_SCB_MOSI_PORT                    GPIO_PRT18
+#define CY_SPI_SCB_MOSI_PIN                     1
+#define CY_SPI_SCB_MOSI_MUX                     P18_1_SCB1_SPI_MOSI
+#define CY_SPI_SCB_CLK_PORT                     GPIO_PRT18
+#define CY_SPI_SCB_CLK_PIN                      2
+#define CY_SPI_SCB_CLK_MUX                      P18_2_SCB1_SPI_CLK
+#define CY_SPI_SCB_SEL0_PORT                    GPIO_PRT18
+#define CY_SPI_SCB_SEL0_PIN                     3
+#define CY_SPI_SCB_SEL0_MUX                     P18_3_SCB1_SPI_SELECT0
+#define CY_SPI_SCB_PCLK                         PCLK_SCB1_CLOCK
+#define CY_SPI_SCB_IRQN                         scb_1_interrupt_IRQn 
+
+#elif (CY_USE_PSVP == 0) && ( defined(CYT3BB5CEE) || defined(CYT3BB5CES) )
+/* CAN1 Pin Mux */ //KMS250901_1 : Added CAN PORT
+#define CY_CANFD1_TYPE                          CY_CANFD1_0_TYPE
+#define CY_CANFD1_RX_PORT                       GPIO_PRT14
+#define CY_CANFD1_RX_PIN                        1
+#define CY_CANFD1_RX_MUX                        P14_1_CANFD1_TTCAN_RX0
+#define CY_CANFD1_TX_PORT                       GPIO_PRT14
+#define CY_CANFD1_TX_PIN                        0
+#define CY_CANFD1_TX_MUX                        P14_0_CANFD1_TTCAN_TX0
+#define CY_CANFD1_PCLK                          PCLK_CANFD1_CLOCK_CAN0
+#define CY_CANFD1_IRQN                          canfd_1_interrupts0_0_IRQn
+  
+
+/* SPI Mux (BB_SPI1) */
+#define CY_SPI_SCB_TYPE                         SCB1
+#define CY_SPI_SCB_MISO_PORT                    GPIO_PRT18
+#define CY_SPI_SCB_MISO_PIN                     0
+#define CY_SPI_SCB_MISO_MUX                     P18_0_SCB1_SPI_MISO 
+#define CY_SPI_SCB_MOSI_PORT                    GPIO_PRT18
+#define CY_SPI_SCB_MOSI_PIN                     1
+#define CY_SPI_SCB_MOSI_MUX                     P18_1_SCB1_SPI_MOSI
+#define CY_SPI_SCB_CLK_PORT                     GPIO_PRT18
+#define CY_SPI_SCB_CLK_PIN                      2
+#define CY_SPI_SCB_CLK_MUX                      P18_2_SCB1_SPI_CLK
+#define CY_SPI_SCB_SEL0_PORT                    GPIO_PRT18
+#define CY_SPI_SCB_SEL0_PIN                     3
+#define CY_SPI_SCB_SEL0_MUX                     P18_3_SCB1_SPI_SELECT0
+#define CY_SPI_SCB_PCLK                         PCLK_SCB1_CLOCK
+#define CY_SPI_SCB_IRQN                         scb_1_interrupt_IRQn
 
 /******************************************************************************/
 /******************************************************************************/
