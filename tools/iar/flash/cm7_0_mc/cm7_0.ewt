@@ -5110,6 +5110,18 @@
             </group>
         </group>
         <group>
+            <name>peripheral</name>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\fda803d_amp.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\mcu_i2s_dw.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\tcan1145d_can.c</name>
+            </file>
+        </group>
+        <group>
             <name>rtos</name>
             <group>
                 <name>mem_mgmt</name>

@@ -1,5 +1,5 @@
 /***************************************************************************//**
-* \file tda803d_amp.h
+* \file fda803d_amp.h
 *
 * \version 1.0
 *
@@ -10,13 +10,14 @@
 * ESTec KMS. This code is based on Cypress reference SW(SDL).
 *******************************************************************************/
 
-#ifndef _TDA803D_AMP_H_
-#define _TDA803D_AMP_H_
+#ifndef _MCU_I2S_DW_H_
+#define _MCU_I2S_DW_H_
 
 //MACRO & Define ***********************************************************************/
 
 //Function Declaration ***********************************************************************/
-void Fda803d_AmpInit(void);
+void I2S_Init(void);
 
-#endif //_TDA803D_AMP_H_
+
+#endif //_MCU_I2S_DW_H_
 

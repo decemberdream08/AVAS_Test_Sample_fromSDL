@@ -15,9 +15,17 @@
 
 #include "cy_project.h"
 #include "cy_device_headers.h"
-#include "tda803d_amp.h"
-#include "tcan1145d_can.h"
 #include "main_config.h"
+#ifdef FDA806D_AMP_ENABLE
+#include "fda803d_amp.h"
+#endif
+#ifdef ESTEC_CAN_ENABLE
+#include "tcan1145d_can.h"
+#endif
+#ifdef ESTEC_MCU_I2S_DW_ENABLE
+#include "mcu_i2s_dw.h"
+#endif
+
 
 //////////////////////////////////////////////////////////////////////////////
 int main(void)
@@ -26,10 +34,9 @@ int main(void)
     
     __enable_irq(); /* Enable global interrupts. */
     
-    // Example had been originally tested with "cache off", so ensure that caches are turned off (may have been enabled by new startup.c module)
-    //SCB_DisableICache(); // Disables and invalidates instruction cache
-    //SCB_DisableDCache(); // Disables, cleans and invalidates data cache
-
+    /* Enable CM7_0/1. CY_CORTEX_M7_APPL_ADDR is calculated in linker script, check it in case of problems. */
+    //Cy_SysEnableApplCore(CORE_CM7_0, CY_CORTEX_M7_0_APPL_ADDR);//DDD...TEST
+    
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
 #ifdef ESTEC_SPI_ENABLE_FOR_CAN	
     Spi_Init(); //SPI
@@ -40,16 +47,20 @@ int main(void)
     //current_can_mode = CAN_INITIAL_MODE;
 #endif
 #ifdef FDA806D_AMP_ENABLE
-    /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-	Fda803d_AmpInit();
+	FDA803D_Amp_Init();
 #endif
-
+#ifdef ESTEC_MCU_I2S_DW_ENABLE
+	I2S_Init();
+#endif
+#ifdef FDA806D_AMP_ENABLE
+    FDA803D_Amp_Play();
+#endif
     for(;;)
     {
     	Cy_SysLib_Delay(1000); //Call CAN transmission in every 1sec
 #ifdef ESTEC_CAN_ENABLE
 		CAN_Transceiver_Status(current_can_mode);
-#endif
+#endif		
     }
 }
 

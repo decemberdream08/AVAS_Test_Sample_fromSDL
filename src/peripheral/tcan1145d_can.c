@@ -1,5 +1,5 @@
 /***************************************************************************//**
-* \file main_cm0plus.c
+* \file tcan1145d_can.c
 *
 * \version 1.0
 *
@@ -15,8 +15,8 @@
 
 #include "cy_project.h"
 #include "cy_device_headers.h"
-#include "tcan1145d_can.h"
 #include "main_config.h"
+#include "tcan1145d_can.h"
 
 
 //MACRO & Define ***********************************************************************/

@@ -62,7 +62,7 @@
                 </option>
                 <option>
                     <name>RTDescription</name>
-                    <state>Use the normal configuration of the C/C++ runtime library. No locale interface, C locale, no file descriptor support, no multibytes in printf and scanf, and no hex floats in strtod.</state>
+                    <state>A compact configuration of the C/C++14 runtime library. No locale interface, C locale, no file descriptor support, no multibytes in printf and scanf, and no hex floats in strtod.</state>
                 </option>
                 <option>
                     <name>OGProductVersion</name>
@@ -1312,13 +1312,14 @@
                 <option>
                     <name>CCDefines</name>
                     <state>tviibh4m</state>
-                    <state>CYT3BB7CEE</state>
+                    <state>CYT3BB5CEE</state>
                     <state>CY_USE_PSVP=0</state>
                     <state>CY_MCU_rev_b</state>
-                    <state>CPU_BOARD_REVA</state>
+                    <state>CPU_BOARD_REVB</state>
                     <state>CY_CORE_CM7_0</state>
                     <state>__ICACHE_PRESENT=1</state>
                     <state>__DCACHE_PRESENT=1</state>
+                    <state>ESTEC_BOARD</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -1450,6 +1451,7 @@
                     <state>$PROJ_DIR$\..\..\..\..\src\interrupts\rev_b</state>
                     <state>$PROJ_DIR$\..\..\..\..\src\drivers</state>
                     <state>$PROJ_DIR$\..\..\..\..\src\system\rev_b</state>
+                    <state>$PROJ_DIR$\..\..\..\..\src\peripheral</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -1778,7 +1780,7 @@
             <archiveVersion>1</archiveVersion>
             <data>
                 <prebuild></prebuild>
-                <postbuild></postbuild>
+                <postbuild>ielftool --ihex "$TARGET_PATH$" "$TARGET_BPATH$.hex"</postbuild>
             </data>
         </settings>
         <settings>
@@ -2971,6 +2973,18 @@
                     <name>$PROJ_DIR$\..\..\..\..\..\common\src\mw\sw_timer\cy_sw_tmr.h</name>
                 </file>
             </group>
+        </group>
+        <group>
+            <name>peripheral</name>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\fda803d_amp.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\mcu_i2s_dw.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\tcan1145d_can.c</name>
+            </file>
         </group>
         <group>
             <name>startup</name>

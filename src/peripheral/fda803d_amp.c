@@ -1,5 +1,5 @@
 /***************************************************************************//**
-* \file tda803d_amp.c
+* \file fda803d_amp.c
 *
 * \version 1.0
 *
@@ -12,8 +12,9 @@
 
 #include "cy_project.h"
 #include "cy_device_headers.h"
-#include "tda803d_amp.h"
 #include "main_config.h"
+#include "fda803d_amp.h"
+
 
 //MACRO & Define ***********************************************************************/
 #ifdef FDA806D_AMP_ENABLE
@@ -44,22 +45,6 @@
 #endif
 
 #define AMP_I2C_SLAVE_ADDR               	0x70
-
-#define FDA803D_IB1_REG                  	0x81
-#define IB1_WS_FREQUENCY_48KHZ             	0x40 //WS : 48kHz, PWM amplifier clock not dithered, PWM in phase
-
-#define FDA803D_IB2_REG                  	0x82
-#define IB2_FULL_SCALE_VOLTAGE_LIMIT_80  	0x0b
-
-#define FDA803D_IB8_REG               		0x88
-#define IB8_PWM_OFF                   		0x00
-#define IB8_PWM_ON                    		0x20
-#define IB8_CHANNEL_IN_MUTE           		0x00
-#define IB8_CHANNEL_IN_PLAY           		0x01
-
-#define FDA803D_DB2_REG               		0xA2
-#define DB2_CHANNEL_IN_MUTE           		0x00
-#define DB2_CHANNEL_IN_PLAY           		0x01
 
 #ifdef ESTEC_GPIO_ENABLE
 //Master Amp
@@ -156,7 +141,7 @@ static cy_stc_scb_i2c_master_xfer_config_t g_stc_i2c_master_config =
 
 //Function Declaration ***********************************************************************/
 #ifdef ESTEC_GPIO_ENABLE
-void AMP_HW_Mute(bool Mute_On);
+void FDA803D_Amp_HW_Mute(bool Mute_On);
 #endif
 
 #ifdef ESTEC_I2C_ENABLE
@@ -238,10 +223,10 @@ void SetI2CPeripheFracDiv24_5(uint64_t targetFreq, uint64_t sourceFreq, uint8_t 
 
 #endif //ESTEC_I2C_ENABLE
 
-void Fda803d_AmpInit(void)
+void FDA803D_Amp_Init(void)
 {
-  uint8_t data = 0;
 	uint8_t result = 0;
+	uint8_t data[15];
 
 #ifdef ESTEC_I2C_ENABLE
 	/*---------------------*/
@@ -284,43 +269,85 @@ void Fda803d_AmpInit(void)
 	Cy_SCB_I2C_Enable(USER_I2C_SCB_TYPE);	
 #endif
 
+	//FDA803D HW mute	
 #ifdef ESTEC_GPIO_ENABLE
-	Cy_GPIO_Clr(AMP_MASTER_MUTE_PORT, AMP_MASTER_MUTE_PIN); //FDA803D HW mute
-	Cy_GPIO_Set(AMP_MASTER_ON_PORT, AMP_MASTER_ON_PIN); //FDA803D Enalbe2 high -> i2c address : 0x70 , Stand by -> Diag Vcc/Gnd, 90ms ?´í›„ -> ECO mode
+	FDA803D_Amp_HW_Mute(false); //FDA803D HW unmute
 #endif
+	Cy_GPIO_Set(AMP_MASTER_ON_PORT, AMP_MASTER_ON_PIN); //FDA803D Enalbe2 high -> i2c address : 0x70 , Stand by -> Diag Vcc/Gnd, 90ms ÀÌÈÄ -> ECO mode
 
-	result = Scb_I2C_Master_Read(FDA803D_DB2_REG, &data);
+	Cy_SysTick_DelayInUs(100000); //100ms delay
 
-    Cy_SysTick_DelayInUs(200000); //200ms wait - 90ms short check + 90ms Stable condition
-
-    result = Scb_I2C_Master_Read(FDA803D_IB1_REG, &data);
-    data |= IB1_WS_FREQUENCY_48KHZ;
-    result = Scb_I2C_Master_Write(FDA803D_IB1_REG, data);
-
-    result = Scb_I2C_Master_Read(FDA803D_IB2_REG, &data);
-    data |= IB2_FULL_SCALE_VOLTAGE_LIMIT_80;
-    result = Scb_I2C_Master_Write(FDA803D_IB2_REG, data);
-
-    result = Scb_I2C_Master_Read(FDA803D_IB8_REG, &data);
-    data |= IB8_PWM_ON;
-    result = Scb_I2C_Master_Write(FDA803D_IB8_REG, data); //pwm on
-
-	result = Scb_I2C_Master_Read(FDA803D_IB8_REG, &data);
-    data |= IB8_CHANNEL_IN_PLAY;
-    result = Scb_I2C_Master_Write(FDA803D_IB8_REG, data); //play
+	//fda803d_SetDefaultRegisters(AEK_AUD_D903V1_DEVICE dev)
+    // Init: Turn IB registers into application default setting
+	data[0]  = IB0_DEFAULT; 		// data[0] = 0x00;
+    data[1]  = IB1_DEFAULT;			// data[1] = 0x40;
+    data[2]  = IB2_DEFAULT;  		// data[2] = 0x00;
+    data[3]  = IB3_DEFAULT;  		// data[3] = 0x30;
+    data[4]  = IB4_DEFAULT;  		// data[4] = 0x00;
+    data[5]  = IB5_DEFAULT;  		// data[5] = 0x00;
+    data[6]  = IB6_DEFAULT;  		// data[6] = 0x00;
+    data[7]  = IB7_DEFAULT;  		// data[7] = 0x00;
+    data[8]  = IB8_DEFAULT;  		// data[8] = 0xC0;
+    data[9]  = IB9_DEFAULT;  		// data[9] = 0x00;
+    data[10] = IB10_DEFAULT;  		// data[10] = 0x50;
+    data[11] = IB11_DEFAULT;  		// data[11] = 0x30;
+    data[12] = IB12_DEFAULT;  		// data[12] = 0x00;
+    data[13] = IB13_DEFAULT;  		// data[13] = 0x20;
+    data[14] = IB14_DEFAULT;  		// data[14] = 0x09;
     
+    Scb_I2C_Master_Write(IB0, data[0]);
+	Scb_I2C_Master_Write(IB1, data[1]);
+	Scb_I2C_Master_Write(IB2, data[2]);
+	Scb_I2C_Master_Write(IB3, data[3]);
+	Scb_I2C_Master_Write(IB4, data[4]);
+	Scb_I2C_Master_Write(IB5, data[5]);
+	Scb_I2C_Master_Write(IB6, data[6]);
+	Scb_I2C_Master_Write(IB7, data[7]);
+	Scb_I2C_Master_Write(IB8, data[8]);
+	Scb_I2C_Master_Write(IB9, data[9]);
+	Scb_I2C_Master_Write(IB10, data[10]);
+	Scb_I2C_Master_Write(IB11, data[11]);
+	Scb_I2C_Master_Write(IB12, data[12]);
+	Scb_I2C_Master_Write(IB13, data[13]);
+	Scb_I2C_Master_Write(IB14, data[14]);
+
+	//FDA803D HW unmute
 #ifdef ESTEC_GPIO_ENABLE
-	AMP_HW_Mute(false); //FDA803D HW unmute
+	FDA803D_Amp_HW_Mute(false); //FDA803D HW unmute
 #endif
 }
 
 #ifdef ESTEC_GPIO_ENABLE
-void AMP_HW_Mute(bool Mute_On)
+void FDA803D_Amp_HW_Mute(bool Mute_On)
 {
 	if(Mute_On) //Mute
 		Cy_GPIO_Clr(AMP_MASTER_MUTE_PORT, AMP_MASTER_MUTE_PIN); //FDA803D HW mute
 	else
 		Cy_GPIO_Set(AMP_MASTER_MUTE_PORT, AMP_MASTER_MUTE_PIN); //FDA803D HW unmute
+}
+
+void FDA803D_Amp_Play(void)
+{
+	uint8_t data = 0;
+
+	Scb_I2C_Master_Read(IB8, &data);
+	
+	if(data & IB8_PWM_ON)
+		return;
+	
+	data |= (IB8_PWM_ON|IB8_PLAY);
+	Scb_I2C_Master_Write(IB8, data); //pwm on
+}
+
+void FDA803D_Amp_Mute(void)
+{
+	uint8_t data = 0;
+
+	Scb_I2C_Master_Read(IB8, &data);
+	
+	data = (data & 0xFE) | IB8_PWM_ON | IB8_MUTE;
+	
+	Scb_I2C_Master_Write(IB8, data);
 }
 #endif
 #endif //FDA806D_AMP_ENABLE
