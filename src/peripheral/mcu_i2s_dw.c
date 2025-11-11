@@ -163,7 +163,7 @@ cy_stc_i2s_config_tx_t g_i2s_tx_config =
     .txChannelLength    = CY_I2S_LEN16,
 #endif
 #ifdef ESTEC_PCM_32BIT_SUPPORT
-    .txWordLength       = CY_I2S_LEN32, //KMS251110_2 : 32bit
+    .txWordLength       = CY_I2S_LEN32, //KMS251110_2 : 32bit (must be less or equal to txChannelLength. )
 #else
     .txWordLength       = CY_I2S_LEN16, //KMS251110_2 : 16bit
 #endif
@@ -274,8 +274,12 @@ void I2S_Init(void)
     Cy_I2S_ClearRxFifo(CY_AUDIOSS_TYPE);
 
     // Calculate clock divider number as per sound data format
+#ifdef FDA806D_AMP_ENABLE //KMS251111_1 : FDA806D BCK shoud be 64fs.
+    g_i2s_clk_config.clkDiv = AUDIO_SOURCE_FREQ_IN_HZ / (AUDIO_CONST_DIV_NUM * gp_WavHeader->samplerate * 32 * I2S_CHANNEL_NUM);
+#else
     g_i2s_clk_config.clkDiv = AUDIO_SOURCE_FREQ_IN_HZ / (AUDIO_CONST_DIV_NUM * gp_WavHeader->samplerate * PCM_DATA_WIDTH * I2S_CHANNEL_NUM);
     CY_ASSERT(AUDIO_SOURCE_FREQ_IN_HZ % (AUDIO_CONST_DIV_NUM * gp_WavHeader->samplerate * PCM_DATA_WIDTH) == 0ul);
+#endif
     // Initialize I2S Clock settings
     CY_ASSERT(Cy_I2S_InitClock(CY_AUDIOSS_TYPE, &g_i2s_clk_config) == CY_I2S_SUCCESS);
 
