@@ -2085,6 +2085,7 @@ extern "C" {
 #define CY_SPI_SCB_IRQN                         scb_1_interrupt_IRQn 
 
 #elif (CY_USE_PSVP == 0) && ( defined(CYT3BB5CEE) || defined(CYT3BB5CES) )
+#if 0 //KMS251110_4 : Moved these codes to TCAN1145_can.c
 /* CAN1 Pin Mux */ //KMS250901_1 : Added CAN PORT
 #define CY_CANFD1_TYPE                          CY_CANFD1_0_TYPE
 #define CY_CANFD1_RX_PORT                       GPIO_PRT14
@@ -2113,6 +2114,7 @@ extern "C" {
 #define CY_SPI_SCB_SEL0_MUX                     P18_3_SCB1_SPI_SELECT0
 #define CY_SPI_SCB_PCLK                         PCLK_SCB1_CLOCK
 #define CY_SPI_SCB_IRQN                         scb_1_interrupt_IRQn
+#endif
 
 /******************************************************************************/
 /******************************************************************************/

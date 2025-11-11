@@ -33,4 +33,5 @@
 ## 2025-11-10
   - Implemented I2S feature and AVAS feature. //KMS251110_1 / KMS251110_2
   - Added 32bit PCM Mono but 16bit PCM Mono is mandatory. //KMS251110_3
+  - Moved these codes(CAN related defines) to TCAN1145_can.c. //KMS251110_4
   
