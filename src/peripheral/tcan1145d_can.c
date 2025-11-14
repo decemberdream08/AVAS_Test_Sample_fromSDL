@@ -284,7 +284,7 @@ static const stc_pin_config can_pin_cfg[] =
 //SPI
 #ifdef ESTEC_SPI_ENABLE_FOR_CAN
 void SetSPIPeripheFracDiv24_5(uint64_t targetFreq, uint64_t sourceFreq, uint8_t divNum);
-void Spi_Init(void);
+void Spi_SCB1_Init(void);
 
 #ifdef SPI_TEST
 void Spi_Send_TCAN1445_Power_On(void); //KMS250904_1
@@ -751,7 +751,7 @@ void Spi_Send_TCAN1445_Power_Off(void) //KMS050904_1
 }
 #endif
 
-void Spi_Init(void)
+void Spi_SCB1_Init(void)
 {
     /******************************************************/
     /******* Calculate divider setting for the SCB ********/

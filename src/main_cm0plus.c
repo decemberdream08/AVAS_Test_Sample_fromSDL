@@ -25,7 +25,12 @@
 #ifdef ESTEC_MCU_I2S_DW_ENABLE
 #include "mcu_i2s_dw.h"
 #endif
-
+#ifdef ESTEC_FLASH_SPI_ENABLE
+#include "w25q32_scb.h"
+#endif
+#ifdef ESTEC_FALSH_QSPI_ENABLE
+#include "w25q32_smif.h"
+#endif
 
 //////////////////////////////////////////////////////////////////////////////
 int main(void)
@@ -39,7 +44,7 @@ int main(void)
     
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
 #ifdef ESTEC_SPI_ENABLE_FOR_CAN	
-    Spi_Init(); //SPI
+    Spi_SCB1_Init(); //SPI
 #endif
 #ifdef ESTEC_CAN_ENABLE
     CAN_Init(); //CAN Init
@@ -55,6 +60,13 @@ int main(void)
 #ifdef FDA806D_AMP_ENABLE
     FDA803D_Amp_Play();
 #endif
+#ifdef ESTEC_FLASH_SPI_ENABLE
+	Spi_SCB3_Init();
+#endif
+#ifdef ESTEC_FALSH_QSPI_ENABLE
+	W25_Init();
+#endif
+
     for(;;)
     {
     	Cy_SysLib_Delay(1000); //Call CAN transmission in every 1sec

@@ -274,7 +274,7 @@ void I2S_Init(void)
     Cy_I2S_ClearRxFifo(CY_AUDIOSS_TYPE);
 
     // Calculate clock divider number as per sound data format
-#ifdef FDA806D_AMP_ENABLE //KMS251111_1 : FDA806D BCK shoud be 64fs.
+#ifdef FDA806D_AMP_ENABLE //KMS251111_1 : FDA806D BCK shoud be 64fs(32bit x 2ch/LR).
     g_i2s_clk_config.clkDiv = AUDIO_SOURCE_FREQ_IN_HZ / (AUDIO_CONST_DIV_NUM * gp_WavHeader->samplerate * 32 * I2S_CHANNEL_NUM);
 #else
     g_i2s_clk_config.clkDiv = AUDIO_SOURCE_FREQ_IN_HZ / (AUDIO_CONST_DIV_NUM * gp_WavHeader->samplerate * PCM_DATA_WIDTH * I2S_CHANNEL_NUM);

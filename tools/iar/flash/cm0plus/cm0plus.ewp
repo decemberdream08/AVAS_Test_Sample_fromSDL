@@ -1764,7 +1764,7 @@
             <data>
                 <extensions></extensions>
                 <cmdline></cmdline>
-                <hasPrio>112</hasPrio>
+                <hasPrio>1</hasPrio>
                 <buildSequence>inputOutputBased</buildSequence>
             </data>
         </settings>
@@ -2871,30 +2871,12 @@
         <group>
             <name>mw</name>
             <group>
-                <name>aic261</name>
-                <file>
-                    <name>$PROJ_DIR$\..\..\..\..\..\common\src\mw\aic261\cy_aic261.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\..\..\..\common\src\mw\aic261\cy_aic261.h</name>
-                </file>
-            </group>
-            <group>
                 <name>button</name>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\..\..\common\src\mw\button\cy_button.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\..\..\common\src\mw\button\cy_button.h</name>
-                </file>
-            </group>
-            <group>
-                <name>eth_phy</name>
-                <file>
-                    <name>$PROJ_DIR$\..\..\..\..\src\mw\eth_phy\cy_dp83867.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\..\..\src\mw\eth_phy\cy_dp83867.h</name>
                 </file>
             </group>
             <group>
@@ -2970,10 +2952,19 @@
         <group>
             <name>peripheral</name>
             <file>
+                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\fda803d_amp.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\mcu_i2s_dw.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\..\..\..\src\peripheral\tcan1145d_can.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\tda803d_amp.c</name>
+                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\w25q32_scb.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\..\src\peripheral\w25q32_smif.c</name>
             </file>
         </group>
         <group>

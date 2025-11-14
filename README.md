@@ -35,6 +35,17 @@
   - Added 32bit PCM Mono but 16bit PCM Mono is mandatory. //KMS251110_3
   - Moved these codes(CAN related defines) to TCAN1145_can.c. //KMS251110_4
 
-## 2025-11-10  
+## 2025-11-11
   - FDA806D BCK shoud be 64fs. This change is to follow HKMC spec(AVAS 24KHz / etc 48KHz). //KMS251111_1
+  
+## 2025-11-14
+  - Implemented external Flash(W25Q32) control for logging. Please refer to w25q32_scb.c & w25q32_scb.h.
+    # Spi_SCB3_Init() funciton has total 6 tests which are releated with flash control.
+      1. Chip Erase(4MB) & Noraml Read Byte
+      2. Byte Write(Write 256 byte one by one from address of 0 to 255) & Noraml Read byte
+      3. Erase a Block 1(64KB) & Noraml Read 256 byte
+      4. Write a page(Max 256 byte /It's possible from 1byte to 256byte) & Fast Read 256 byte
+      5. Erase(32KB) & Noraml Read 256 byte
+      6. Erase a sector(4KB) & Noraml Read 256 byte
+  - Added external Flash contorl for audio source. Please refer to sc park's codes.
   

@@ -23,7 +23,7 @@ typedef enum {
 extern CAN_MODE current_can_mode;
 
 //Function Declaration ***********************************************************************/
-void Spi_Init(void);
+void Spi_SCB1_Init(void);
 
 void CAN_Transceiver_Status(CAN_MODE cur_mode);
 void CAN_Init(void);
